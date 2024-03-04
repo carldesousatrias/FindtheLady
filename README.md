@@ -24,7 +24,7 @@ Implements the "Finding the canonical space: rank the neurons" method (see paper
 ### Active_ranking.py
 Implements the "Learn a specific input to rank the neurons" (see paper) and tests its robustness against fine-tuning.
 ### Training.py
-Permits the training of the models on CIFAR10.
+Permits the training and saving of the models, you can obtain vgg16_Uchi by adding the watermarking line to this file. 
 ### Permutation.py
 Proceeds the permutation attack against a VGG16 model trained on CIFAR10. 
 ### ProofofConcept.py
