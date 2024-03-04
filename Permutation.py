@@ -53,7 +53,7 @@ def permutation_channel(net, weight_name, permut):
                 if 'weight' in name:
                     print("permutation channel", name)
                     # print(parameters)
-                    parameters.copy_(parameters[:, permut])
+                    parameters.copy_(parameters.clone()[:, permut])
 
 
 def permutation_neuron(net,weight_name, permut):
@@ -62,10 +62,10 @@ def permutation_neuron(net,weight_name, permut):
             if weight_name in name:
                 if 'weight' in name:
                     print("permutation neuron", name)
-                    parameters.copy_(parameters[permut, :])
+                    parameters.copy_(parameters.clone()[permut, :])
                 else:
                     print("permutation neuron bias", name)
-                    parameters.copy_(parameters[permut])
+                    parameters.copy_(parameters.clone()[permut])
 
 
 def permutation(net,permute, layer_n, layer_c):
@@ -80,7 +80,7 @@ def permutation_bn(net,permut,layer_bn):
                 print("permutation batch norm", name)
                 # print(parameters)
                 print(parameters.running_mean)
-                parameters.copy_(parameters[permut])
+                parameters.copy_(parameters.clone()[permut])
 
 def permutation_neuron_bn(net,weight_name, weight_bn, permut):
     with torch.no_grad():
@@ -89,11 +89,11 @@ def permutation_neuron_bn(net,weight_name, weight_bn, permut):
                 print("permutation batch norm",name)
                 # print(parameters)
                 # print(parameters.running_mean)
-                parameters.copy_(parameters[permut])
+                parameters.copy_(parameters.clone()[permut])
             if weight_name in name and 'weight' in name:
                 print("permutation neuron",name)
                 # print(parameters)
-                parameters.copy_(parameters[permut, :])
+                parameters.copy_(parameters.clone()[permut, :])
 
 def permutation_with_bn(net,permute, layer_n, layer_bn, layer_c):
     permutation_neuron_bn(net,layer_n,layer_bn, permute)
